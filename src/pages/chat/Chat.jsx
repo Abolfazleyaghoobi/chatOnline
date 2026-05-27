@@ -1,9 +1,17 @@
+import ChatBox from "../../components/ChatBox/ChatBox";
+import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
+import RightSidebar from "../../components/RightSidebar/RightSidebar";
 import "./Chat.css";
 function Chat() {
   return (
-    <>
-      <h2>page chats</h2>
-    </>
+    <div className="chat">
+      <div className="chat_container">
+          <LeftSidebar/>
+          <ChatBox/>
+          <RightSidebar/>
+      </div>
+      
+    </div>
   );
 }
 
