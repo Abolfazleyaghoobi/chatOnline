@@ -84,3 +84,28 @@ background: #000;
  .friends:hover span{
     color: rgb(7, 7, 7);
 }
+.subMenu{
+    width: 120px;
+    position: absolute;
+    background: #82b2f1;
+    padding: 10px 20px;
+    border-radius: 9px;
+    opacity: 0;
+    visibility: hidden;
+    right: 0;
+    font-size: 13px;
+    top: -14px;
+    z-index: 999;
+    /* flex-direction: column; */
+    /* gap: 10px; */
+}
+.subMenu p{
+    cursor: pointer;
+}
+.menu{
+    position: relative;
+}
+.menu:hover .subMenu{
+    opacity: 1;
+    visibility: visible;
+}   
