@@ -24,7 +24,7 @@ const db=getFirestore(app);
 const  sinup=async (username,email,password)=>{
   try {
       const res= await createUserWithEmailAndPassword(auth,email,password);
-      tost.success("Account created successfully")
+      toast.success("Account created successfully")
 
       const user=res.user;
       await setDoc(doc(db,"users",user.uid),{
@@ -38,7 +38,7 @@ const  sinup=async (username,email,password)=>{
       })
       await setDoc(doc(db,"chats",user.uid),{
         chatData:[]
-      })
+      }) 
   } catch (error) {
       console.error(error)
          toast.error(error.code.split("/")[1].split("-").join(" "))
