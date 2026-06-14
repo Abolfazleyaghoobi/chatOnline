@@ -16,7 +16,7 @@ function ProfileUpdate() {
   const [bio, setBio] = useState("");
   const [prevImage, setPrevImage] = useState("");
 
-    const {setUserData}=useContext(AppContext);
+  const { setUserData } = useContext(AppContext);
   const profileUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -27,27 +27,25 @@ function ProfileUpdate() {
       if (image) {
         const imageUrl = await uploadToCloudinary(image);
         setPrevImage(imageUrl);
-       await updateDoc(docRef, {
+        await updateDoc(docRef, {
           avatar: imageUrl,
           name: name,
           bio: bio,
         });
-     
-          toast.success("Profile updated successfully");
 
+        toast.success("Profile updated successfully");
       } else {
         await updateDoc(docRef, {
-
           name: name,
           bio: bio,
-        }); 
+        });
       }
-      const  snap=await getDoc(docRef);
+      const snap = await getDoc(docRef);
       setUserData(snap.data());
       navigate("/chat");
     } catch (error) {
       console.log(error);
-        toast.error("Error updating profile");
+      toast.error("Error updating profile");
     }
   };
   useEffect(() => {
@@ -86,7 +84,13 @@ function ProfileUpdate() {
                 hidden
               />
               <img
-                src={image ? URL.createObjectURL(image) : assets.avatar_icon}
+                src={
+                  image
+                    ? URL.createObjectURL(image)
+                    : prevImage
+                      ? prevImage
+                      : assets.logo_icon
+                }
                 alt=""
               />
               upload profile image
@@ -109,7 +113,13 @@ function ProfileUpdate() {
           </form>
           <img
             className="profile-pic"
-            src={image ? URL.createObjectURL(image) : assets.logo_icon}
+            src={
+              image
+                ? URL.createObjectURL(image)
+                : prevImage
+                  ? prevImage
+                  : assets.logo_icon
+            }
             alt=""
           />
         </div>

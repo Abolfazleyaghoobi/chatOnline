@@ -148,3 +148,14 @@
     margin-bottom: 30px;
     border-radius: 10px;
 }
+.chat-welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    height: 100%;
+}
+.chat-welcome img{
+    width: 100px;
+}

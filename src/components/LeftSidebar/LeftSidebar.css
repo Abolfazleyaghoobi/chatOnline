@@ -23,7 +23,7 @@ background: #000;
              
 }
 .ls-search{
-    background: #82b2f1;
+    background: #eeff309f;
     display: flex;
     border-radius: 9px;
     align-items: center;
@@ -46,6 +46,12 @@ background: #000;
 .ls-search input::placeholder{
     color: white;
     opacity: 0.8 ;
+}
+.addToChatList{
+     padding: 0.3rem;
+     border-radius: 6px;
+     background: #46ffaf;
+     cursor: pointer;
 }
  .ls-list{
     display: flex;
