@@ -10,49 +10,54 @@ function ChatBox() {
   useContext(AppContext);
   
   const [input, setInput] = useState("");
-  const sendMessage = async () => {
-    try {
-      if (input && messageId) {
-        // console.log('messageId', messageId)
-        await updateDoc(doc(db, "messages", messageId), {
-          message: arrayUnion({
-            sId: userData.id,
-            text: input,
-            createAt: new Date(),
-          }),
-        });
-        const UserIDs = [chatUser.rid, userData.id];
-    
-          UserIDs.forEach(async (id) => {
-     
-            const userChatsRef = doc(db, "chat", id);
-            const userChatSnapshot = await getDoc(userChatsRef);
-            if (userChatSnapshot.exists()) {
-              const userChatData = userChatSnapshot.data();
-              const chatIndex = userChatData.chatData.findIndex(
-                (c) => c.messageId === messageId,
-              );
-              userChatData.chatData[chatIndex].lastMessage = input.slice(0, 30);
-              userChatData.chatData[chatIndex].updatedAt = Date.now();
-              if (userChatData.chatData[chatIndex].rId == userData.id) {
-                userChatData.chatData[chatIndex].messageSeen = false;
-              }
-              await updateDoc(userChatsRef, {
-                chatData: userChatData.chatData,
-              });
+const sendMessage = async () => {
+  try {
+    if (input && messageId) {
+      await updateDoc(doc(db, "messages", messageId), {
+        message: arrayUnion({
+          sId: userData.id,
+          text: input,
+          createAt: new Date(),
+        }),
+      });
+
+      const UserIDs = [chatUser.rid, userData.id];
+
+      await Promise.all(
+        UserIDs.map(async (id) => {
+          const userChatsRef = doc(db, "chats", id);
+          const userChatSnapshot = await getDoc(userChatsRef);
+          if (userChatSnapshot.exists()) {
+            const userChatData = userChatSnapshot.data();
+            const chatIndex = userChatData.chatData.findIndex(
+              (c) => c.messageId === messageId,
+            );
+            userChatData.chatData[chatIndex].lastMessage = input.slice(0, 30);
+            userChatData.chatData[chatIndex].updatedAt = Date.now();
+            if (userChatData.chatData[chatIndex].rId == userData.id) {
+              userChatData.chatData[chatIndex].messageSeen = false;
             }
-          });
-        }
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
+            await updateDoc(userChatsRef, {
+              chatData: userChatData.chatData,
+            });
+          }
+        })
+      );
+
+      setInput(""); // خالی کردن input بعد از ارسال
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
+};
   useEffect(() => {
     if (messageId) {
       const unSub = onSnapshot(doc(db, "messages", messageId), (res) => {
         // console.log('unSub', unSub)
-        setMessages(res.data().message.reverse())
-        console.log(res.data().message.reverse());
+        if (res.data() && res.data().message) {
+          setMessages(res.data().message.reverse())
+          console.log(res.data().message.reverse());
+        }
       });
       return () => {
         unSub();
