@@ -5,6 +5,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   serverTimestamp,
@@ -85,7 +86,7 @@ function LeftSidebar() {
           lastMessage: "",
           rid: senderId,
           updatedAt: Date.now(),
-          messageSeen: true,
+          messageSeen: false,
         }),
       });
       await updateDoc(doc(chatRef, userData.id), {
@@ -94,7 +95,7 @@ function LeftSidebar() {
           lastMessage: "",
           rid: user.id,
           updatedAt: Date.now(),
-          messageSeen: true,
+          messageSeen: false,
         }),
       });
       toast.success("Chat added successfully");
@@ -108,9 +109,22 @@ function LeftSidebar() {
   };
 
   const setChat = async (item) => {
-    setChatUser(item);
+    try {
+          setChatUser(item);
  
     setMessageId(item.messageId);
+    const userChatsRef=doc(db,"chat",userData.id)
+    const userChatsSnapshot=await getDoc(userChatsRef)
+    // console.log('userChatsSnapshot', userChatsSnapshot.data())
+    const userChatsData=userChatsSnapshot.data();
+    // console.log('userChatsData', userChatsData)
+    const chatIndex=userChatsData.chatData.findIndex((chat)=>chat.messageId===item.messageId)
+    userChatsData.chatsData[chatIndex].messageSeen=true;
+    await updateDoc(userChatsRef,{chatData:userChatsData.chatData})
+    } catch (error) {
+      console.log('error)', error)
+      
+    }
   };
   return (
     <div className="ls">
@@ -154,7 +168,7 @@ function LeftSidebar() {
                 <div
                   onClick={() => setChat(item)}
                   key={index}
-                  className="friends"
+                  className={`friends ${item.messageSeen || item.messageId === messageId? "":"border"}`}
                 >
                   <img src={item.userData.avatar} alt="" />
                   {/* User name */}

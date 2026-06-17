@@ -115,3 +115,11 @@ background: #000;
     opacity: 1;
     visibility: visible;
 }   
+
+
+.friends.border img {
+    border :3px solid red;
+}
+.friends.border div span{
+    color:yellow
+}

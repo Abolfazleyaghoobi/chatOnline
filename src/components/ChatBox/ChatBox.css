@@ -84,8 +84,6 @@
     border-radius: 50%;
 }
 
-.s-msg,
-
 .chat-msg {
     height: calc(100% - 70px);
     padding-bottom: 50px;
@@ -158,4 +156,11 @@
 }
 .chat-welcome img{
     width: 100px;
+}
+
+
+
+.imageee{
+    width: 120px;
+    border-radius: 9px;
 }
