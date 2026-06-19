@@ -1,16 +1,17 @@
 .chat-box {
     height: 80vh;
     position: relative;
-    background: #2C3930;
+    background: #9b93a1;
 }
 
 .chat-user {
     padding: 10px 20px;
-    background: #3F4E46;
+    background: #91ADC2;
+    border-left:1px solid rgba(128, 128, 128, 0.767);  
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid #2C3930;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.767);
 }
 
 .chat-user img {
@@ -40,7 +41,8 @@
     align-items: center;
     gap: 12px;
     padding: 10px 15px;
-    background-color: #3F4E46;
+    background-color: #829db0;
+    border-left:1px solid rgba(128, 128, 128, 0.767);
     position: absolute;
     bottom: 0;
     right: 0;
@@ -64,9 +66,9 @@
     outline: none;
 
 }
-/* .chat-input input::placeholder {
-    color: white;
-} */
+.chat-input input::placeholder {
+    color: rgb(226, 226, 226);
+}
 
 
 .chat-msg {
@@ -116,11 +118,13 @@
 }
 
 .msg {
-    color: white;
-    background: orange;
+    color: rgb(0, 0, 0);
+    /* background: orange; */
     padding: 10px 15px;
     max-width: 200px;
-    font-size: 11px;
+    font-size: 13px;
+    box-shadow: 0  5px  5px rgba(0, 0, 0, 0.4);
+
     font-weight: 300;
     border-radius: 8px 8px 0px 8px;
     margin-bottom: 10px;
@@ -128,11 +132,11 @@
 
 .r-msg .msg {
     border-radius: 8px 8px 8px 0px;
-    background: #3F4E46;
+    background: #A9DDD6;
 }
 
 .s-msg .msg {
-    background: #A38368;
+    background: #9BA0BC;
 }
 
 .s-msg div,

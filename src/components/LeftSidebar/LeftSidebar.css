@@ -1,5 +1,5 @@
 .ls{
-background: #000;    
+background: #91ADC2;    
     
     
     color: white;
@@ -23,7 +23,7 @@ background: #000;
              
 }
 .ls-search{
-    background: #eeff309f;
+background: #768ea1;    
     display: flex;
     border-radius: 9px;
     align-items: center;
@@ -51,7 +51,7 @@ background: #000;
 .addToChatList{
      padding: 0.3rem;
      border-radius: 6px;
-     background: #46ffaf;
+     background:#a9c8e1 ;
      cursor: pointer;
 }
  .ls-list{
@@ -68,6 +68,8 @@ background: #000;
     border-radius: 50%;
  }
  .ls-list .friends{
+    background: #768ea1;
+    border-radius: 9px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -80,11 +82,11 @@ background: #000;
     flex-direction: column;
  }
  .friends span{
-    color: #3f526b;
+    color: #292929;
     font-size: 12px;
  }
  .friends:hover{
-    background: #82b2f1;
+    background: #a8cdec;
     border-radius: 9px;
     color: white
  }
@@ -94,7 +96,7 @@ background: #000;
 .subMenu{
     width: 120px;
     position: absolute;
-    background: #82b2f1;
+    background: #30393f;
     padding: 10px 20px;
     border-radius: 9px;
     opacity: 0;

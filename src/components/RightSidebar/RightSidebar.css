@@ -1,6 +1,7 @@
 .rs{
     color: white;
-    background: #000;
+    background: #91ADC2;
+    border-left: 1px solid gray;
     position: relative;
     height: 80vh;
     overflow-y: scroll;
@@ -36,9 +37,15 @@
     margin: 10px 0;
     opacity: 80%;
 }
+.rs-media p{
+    border-bottom: 1px solid gray;
+    color: rgb(29, 29, 29);
+
+}
 .rs-media{
     padding: 0 20px;
-    font-size: 12px;
+    font-size: 14px;
+    /* border-bottom: 1px ; */
 
 }
 .rs-media div{
@@ -61,7 +68,7 @@
     bottom: 20px;
     left:50%;
     transform: translateX(-50%);
-    background:orange;
+    background:rgb(66, 118, 123);
     color:white;
     border:none;
     font-size: 12px;

@@ -15,7 +15,7 @@ import uploadToCloudinary from "../../lib/uploadImage";
 function ChatBox() {
   const { userData, messageId, chatUser, messages, setMessages ,   chatVisible,setChatVisible} =
   useContext(AppContext);
-  console.log('chatVisible', chatVisible)
+  // console.log('chatVisible', chatVisible)
   
   const [input, setInput] = useState("");
   const sendMessage = async () => {
