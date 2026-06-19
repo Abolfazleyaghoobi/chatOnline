@@ -1,5 +1,5 @@
 .ls{
-background: #91ADC2;    
+background: #1e293b;    
     
     
     color: white;
@@ -23,7 +23,7 @@ background: #91ADC2;
              
 }
 .ls-search{
-background: #768ea1;    
+background: #2d394b;    
     display: flex;
     border-radius: 9px;
     align-items: center;
@@ -68,7 +68,7 @@ background: #768ea1;
     border-radius: 50%;
  }
  .ls-list .friends{
-    background: #768ea1;
+    background: #222f50;
     border-radius: 9px;
     display: flex;
     align-items: center;
@@ -82,7 +82,8 @@ background: #768ea1;
     flex-direction: column;
  }
  .friends span{
-    color: #292929;
+      color: #f8fafc;
+
     font-size: 12px;
  }
  .friends:hover{

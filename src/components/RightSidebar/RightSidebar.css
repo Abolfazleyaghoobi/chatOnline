@@ -1,7 +1,8 @@
 .rs{
     color: white;
-    background: #91ADC2;
-    border-left: 1px solid gray;
+background: #1e293b;    
+
+    /* border-left: 1px solid gray; */
     position: relative;
     height: 80vh;
     overflow-y: scroll;
@@ -33,13 +34,14 @@
     font-weight: 300;
 }
 .rs hr{
-    border-color:wheat;
+    /* border-color:wheat; */
     margin: 10px 0;
     opacity: 80%;
 }
 .rs-media p{
     border-bottom: 1px solid gray;
-    color: rgb(29, 29, 29);
+        color: #f8fafc;
+
 
 }
 .rs-media{
