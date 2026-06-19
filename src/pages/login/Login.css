@@ -65,3 +65,11 @@
     margin-left: 3px;
     color: #4ec4ff;
 }
+@media (max-width:768px) {
+    .login{
+        flex-direction: column;
+        justify-items: center;
+        gap: 20px;   
+    }
+    
+}

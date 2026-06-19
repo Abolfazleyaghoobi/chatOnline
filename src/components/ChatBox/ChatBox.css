@@ -164,3 +164,20 @@
     width: 120px;
     border-radius: 9px;
 }
+.chat-user .arrow{
+display: none;
+}
+@media (max-width:900px) {
+    .chat-box{
+        width: 100%;
+    }
+    .chat-welcome{
+        display: none;
+    }
+    .chat-user .arrow{
+        display:block;
+    }
+    .chat-user .help{
+        display: none;
+    }
+}

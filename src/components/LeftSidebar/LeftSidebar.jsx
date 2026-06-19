@@ -27,10 +27,12 @@ function LeftSidebar() {
 
     chatUser,
     setChatUser,
+    chatVisible,
+    setChatVisible,
   } = useContext(AppContext);
   const [user, setUser] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
-  const inputSearch=useRef(null)
+  const inputSearch = useRef(null);
   const inputHandler = async (e) => {
     try {
       const input = e.target.value;
@@ -39,21 +41,18 @@ function LeftSidebar() {
         const userRef = collection(db, "users");
         const q = query(userRef, where("username", "==", input.toLowerCase()));
         const querySnap = await getDocs(q);
-        
+
         const currentUserId = userData?.id;
         if (!querySnap.empty && querySnap.docs[0].id !== currentUserId) {
-          console.log('querySnap', querySnap.docs[0])
+          console.log("querySnap", querySnap.docs[0]);
           let userExist = false;
-        
+
           chatData.some((user) => {
-           
             if (user.rid === querySnap.docs[0].data().id) {
-              
               userExist = true;
             }
           });
           if (!userExist) {
-     
             setUser(querySnap.docs[0].data());
           }
         } else {
@@ -99,9 +98,8 @@ function LeftSidebar() {
         }),
       });
       toast.success("Chat added successfully");
-      inputSearch.current.value=""
-        setShowSearch(false);
-
+      inputSearch.current.value = "";
+      setShowSearch(false);
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -110,24 +108,18 @@ function LeftSidebar() {
 
   const setChat = async (item) => {
     try {
-          setChatUser(item);
- 
-    setMessageId(item.messageId);
-    const userChatsRef=doc(db,"chat",userData.id)
-    const userChatsSnapshot=await getDoc(userChatsRef)
-    // console.log('userChatsSnapshot', userChatsSnapshot.data())
-    const userChatsData=userChatsSnapshot.data();
-    // console.log('userChatsData', userChatsData)
-    const chatIndex=userChatsData.chatData.findIndex((chat)=>chat.messageId===item.messageId)
-    userChatsData.chatsData[chatIndex].messageSeen=true;
-    await updateDoc(userChatsRef,{chatData:userChatsData.chatData})
+      setChatUser(item);
+
+      setMessageId(item.messageId);
+
+      setChatVisible(true);
     } catch (error) {
-      console.log('error)', error)
-      
+      console.log('error', error)
+
     }
   };
   return (
-    <div className="ls">
+    <div className={`ls ${chatVisible ? "hidden" : ""}`}>
       <div className="ls-top">
         {/* logo and menu */}
         <div className="ls-nav">
@@ -142,7 +134,7 @@ function LeftSidebar() {
           </div>
         </div>
         {/* search bar */}
-        <div   className="ls-search">
+        <div className="ls-search">
           <img src={assets.search_icon} alt="" />
           <input
             onChange={inputHandler}
@@ -150,7 +142,9 @@ function LeftSidebar() {
             type="text"
             placeholder="Search here..."
           />
-          <button onClick={addChat}  className="addToChatList">Add</button>
+          <button onClick={addChat} className="addToChatList">
+            Add
+          </button>
         </div>
         {/* left sidebar list */}
         <div className="ls-list">
@@ -164,11 +158,10 @@ function LeftSidebar() {
               // console.log('item', item)
 
               return (
-               
                 <div
                   onClick={() => setChat(item)}
                   key={index}
-                  className={`friends ${item.messageSeen || item.messageId === messageId? "":"border"}`}
+                  className={`friends ${item.messageSeen || item.messageId === messageId ? "" : "border"}`}
                 >
                   <img src={item.userData.avatar} alt="" />
                   {/* User name */}
@@ -177,8 +170,7 @@ function LeftSidebar() {
                     <span>{item.lastMessage}</span>
                   </div>
                 </div>
-         
-              )
+              );
             })
           )}
         </div>

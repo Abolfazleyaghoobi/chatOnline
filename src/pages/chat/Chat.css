@@ -23,3 +23,11 @@
     text-align: center;
     margin-top: 30px
 }
+@media (max-width: 900px) {
+        .chat_container {
+            display: flex;
+        }
+        .loading{
+            font-size: 30px; 
+        }
+}

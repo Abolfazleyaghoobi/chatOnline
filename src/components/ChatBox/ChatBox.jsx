@@ -13,9 +13,10 @@ import { db } from "../../config/firebase";
 import { reverse } from "firebase/firestore/pipelines";
 import uploadToCloudinary from "../../lib/uploadImage";
 function ChatBox() {
-  const { userData, messageId, chatUser, messages, setMessages } =
-    useContext(AppContext);
-
+  const { userData, messageId, chatUser, messages, setMessages ,   chatVisible,setChatVisible} =
+  useContext(AppContext);
+  console.log('chatVisible', chatVisible)
+  
   const [input, setInput] = useState("");
   const sendMessage = async () => {
     try {
@@ -125,7 +126,7 @@ function ChatBox() {
   return chatUser ? (
     <>
       {/* User profile */}
-      <div className="chat-box">
+      <div className={`chat-box ${chatVisible ?"":"hidden"}`}>
         <div className="chat-user">
           <img src={chatUser.userData.avatar} alt="" />
           <p>
@@ -136,6 +137,7 @@ function ChatBox() {
 
           </p>
           <img src={assets.help_icon} className="help" alt="" />
+          <img onClick={()=>setChatVisible(false)} src={assets.arrow_icon} className="arrow" alt="" />
         </div>
 
         {/* chat  message */}
@@ -197,7 +199,7 @@ function ChatBox() {
       </div>
     </>
   ) : (
-    <div className="chat-welcome">
+    <div  className={`chat-welcome `}>
       <img src={assets.logo_icon} alt="" />
       <p>Welcome to your chat!</p>
     </div>

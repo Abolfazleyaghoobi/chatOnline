@@ -27,6 +27,7 @@ background: #000;
     display: flex;
     border-radius: 9px;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     padding: 10px 12px;
     margin-block: 20px;
@@ -122,4 +123,9 @@ background: #000;
 }
 .friends.border div span{
     color:yellow
+}
+@media (max-width:900px) {
+    .ls{
+        width: 100% ;
+    }
 }
