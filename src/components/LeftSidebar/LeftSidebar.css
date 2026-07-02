@@ -58,9 +58,9 @@ background: #2d394b;
     display: flex;
     flex-direction: column;
     height: 61.5vh;
+    gap:10px;
     overflow-y: scroll;
-    /* background: #000; */
-    /* overflow: hidden; */
+ 
  }
  .ls-list img{
     width:35px;
